@@ -24,10 +24,7 @@ final class HomeViewController: UIViewController {
     }
 
     private func setupTableView() {
-        tableView.register(
-            HomeBucketTVC.loadNib(),
-            forCellReuseIdentifier: "HomeBucketTVC"
-        )
+        tableView.register(HomeBucketTVC.loadNib(),forCellReuseIdentifier: "HomeBucketTVC")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -56,26 +53,43 @@ final class HomeViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
         return viewModel.buckets.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "HomeBucketTVC",
-            for: indexPath
-        ) as? HomeBucketTVC else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeBucketTVC",for: indexPath) as? HomeBucketTVC else {
             return UITableViewCell()
         }
 
         let bucketViewModel = viewModel.buckets[indexPath.row]
         cell.configure(with: bucketViewModel)
+        cell.onSeeAllTapped = { [weak self] in
+               self?.openSeeAll(for: bucketViewModel)
+           }
 
         return cell
     }
+    
+    private func openSeeAll(for bucketVM: HomeBucketViewModel) {
+        debugPrint("code is working here")
+        // ✅ Create SeeAll ViewModel
+        let seeAllVM = SeeAllViewModel(
+            title: bucketVM.title,
+            endpointProvider: { page in
+                bucketVM.type.endpoint(page: page)
+            }
+        )
+
+        // ✅ Instantiate VC
+        let vc: SeeAllViewController =
+        Storyboard.home.instance.instantiate()
+
+        vc.viewModel = seeAllVM
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
 
 // MARK: - UITableViewDelegate

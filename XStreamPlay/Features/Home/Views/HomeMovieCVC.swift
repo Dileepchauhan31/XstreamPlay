@@ -23,6 +23,11 @@ final class HomeMovieCVC: UICollectionViewCell {
     @IBOutlet weak var bottomTitleLabel: UILabel!
     @IBOutlet weak var bottomTitleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonViewtitleLbl: UIView!
+    
+    // MARK: - Variables
+    
+   static var identifier: String = "HomeMovieCVC"
+        
 
     // MARK: - Lifecycle
 
@@ -50,6 +55,11 @@ final class HomeMovieCVC: UICollectionViewCell {
 
     // MARK: - UI Setup
 
+    
+    static func loadNib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
     private func setupUI() {
 
         // Poster Image

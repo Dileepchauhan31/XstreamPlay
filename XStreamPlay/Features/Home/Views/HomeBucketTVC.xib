@@ -43,15 +43,27 @@
                                                 </constraints>
                                                 <imageReference key="image" image="arrow.right" catalog="system" symbolScale="large"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rja-PN-nGQ">
+                                                <rect key="frame" x="284" y="0.0" width="30" height="35"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <connections>
+                                                    <action selector="seeAllButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rmK-YP-JrN"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Rja-PN-nGQ" firstAttribute="centerY" secondItem="GqD-rH-Wp1" secondAttribute="centerY" id="0HL-pt-5d9"/>
                                             <constraint firstItem="oHl-sV-GpY" firstAttribute="top" secondItem="RIS-3P-qFX" secondAttribute="top" id="5bU-DO-irg"/>
                                             <constraint firstItem="oHl-sV-GpY" firstAttribute="leading" secondItem="RIS-3P-qFX" secondAttribute="leading" constant="10" id="GCu-fd-vOZ"/>
                                             <constraint firstAttribute="height" constant="35" id="GI9-WD-CxL"/>
+                                            <constraint firstItem="Rja-PN-nGQ" firstAttribute="height" secondItem="GqD-rH-Wp1" secondAttribute="height" id="RYu-lR-U2A"/>
+                                            <constraint firstItem="Rja-PN-nGQ" firstAttribute="leading" secondItem="oHl-sV-GpY" secondAttribute="trailing" constant="14" id="Voq-f7-W4c"/>
                                             <constraint firstItem="GqD-rH-Wp1" firstAttribute="leading" secondItem="oHl-sV-GpY" secondAttribute="trailing" constant="10" id="YnC-VY-nnn"/>
                                             <constraint firstItem="GqD-rH-Wp1" firstAttribute="top" secondItem="RIS-3P-qFX" secondAttribute="top" id="kT8-dw-rcJ"/>
                                             <constraint firstAttribute="bottom" secondItem="oHl-sV-GpY" secondAttribute="bottom" id="nVO-dV-3Ch"/>
+                                            <constraint firstItem="Rja-PN-nGQ" firstAttribute="width" secondItem="GqD-rH-Wp1" secondAttribute="width" id="pcV-FD-gEO"/>
                                             <constraint firstAttribute="trailing" secondItem="GqD-rH-Wp1" secondAttribute="trailing" constant="10" id="yjb-Cf-6QR"/>
                                             <constraint firstAttribute="bottom" secondItem="GqD-rH-Wp1" secondAttribute="bottom" id="zHk-wQ-vXe"/>
                                         </constraints>
