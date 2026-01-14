@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		845D51D72F15370A0036D319 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 845D51D62F15370A0036D319 /* Kingfisher */; settings = {ATTRIBUTES = (Required, ); }; };
+		84777BD72F153DD100B03266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84777BD62F153DD100B03266 /* Alamofire */; settings = {ATTRIBUTES = (Required, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		845D51812F15335B0036D319 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 845D51622F1533590036D319 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 845D51692F1533590036D319;
+			remoteInfo = XStreamPlay;
+		};
+		845D518B2F15335B0036D319 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 845D51622F1533590036D319 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 845D51692F1533590036D319;
+			remoteInfo = XStreamPlay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		845D516A2F1533590036D319 /* XStreamPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XStreamPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		845D51802F15335B0036D319 /* XStreamPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XStreamPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		845D518A2F15335B0036D319 /* XStreamPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XStreamPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		84777B902F153C3D00B03266 /* Exceptions for "XStreamPlay" folder in "XStreamPlay" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SupportingFiles/Info.plist,
+			);
+			target = 845D51692F1533590036D319 /* XStreamPlay */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		845D516C2F1533590036D319 /* XStreamPlay */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				84777B902F153C3D00B03266 /* Exceptions for "XStreamPlay" folder in "XStreamPlay" target */,
+			);
+			path = XStreamPlay;
+			sourceTree = "<group>";
+		};
+		845D51832F15335B0036D319 /* XStreamPlayTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = XStreamPlayTests;
+			sourceTree = "<group>";
+		};
+		845D518D2F15335B0036D319 /* XStreamPlayUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = XStreamPlayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		845D51672F1533590036D319 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845D51D72F15370A0036D319 /* Kingfisher in Frameworks */,
+				84777BD72F153DD100B03266 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D517D2F15335B0036D319 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D51872F15335B0036D319 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		845D51612F1533590036D319 = {
+			isa = PBXGroup;
+			children = (
+				845D516C2F1533590036D319 /* XStreamPlay */,
+				845D51832F15335B0036D319 /* XStreamPlayTests */,
+				845D518D2F15335B0036D319 /* XStreamPlayUITests */,
+				845D516B2F1533590036D319 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		845D516B2F1533590036D319 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				845D516A2F1533590036D319 /* XStreamPlay.app */,
+				845D51802F15335B0036D319 /* XStreamPlayTests.xctest */,
+				845D518A2F15335B0036D319 /* XStreamPlayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		845D51692F1533590036D319 /* XStreamPlay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 845D51932F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlay" */;
+			buildPhases = (
+				845D51662F1533590036D319 /* Sources */,
+				845D51672F1533590036D319 /* Frameworks */,
+				845D51682F1533590036D319 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				845D516C2F1533590036D319 /* XStreamPlay */,
+			);
+			name = XStreamPlay;
+			packageProductDependencies = (
+				845D51D62F15370A0036D319 /* Kingfisher */,
+				84777BD62F153DD100B03266 /* Alamofire */,
+			);
+			productName = XStreamPlay;
+			productReference = 845D516A2F1533590036D319 /* XStreamPlay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		845D517F2F15335B0036D319 /* XStreamPlayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 845D51982F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlayTests" */;
+			buildPhases = (
+				845D517C2F15335B0036D319 /* Sources */,
+				845D517D2F15335B0036D319 /* Frameworks */,
+				845D517E2F15335B0036D319 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				845D51822F15335B0036D319 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				845D51832F15335B0036D319 /* XStreamPlayTests */,
+			);
+			name = XStreamPlayTests;
+			packageProductDependencies = (
+			);
+			productName = XStreamPlayTests;
+			productReference = 845D51802F15335B0036D319 /* XStreamPlayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		845D51892F15335B0036D319 /* XStreamPlayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 845D519B2F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlayUITests" */;
+			buildPhases = (
+				845D51862F15335B0036D319 /* Sources */,
+				845D51872F15335B0036D319 /* Frameworks */,
+				845D51882F15335B0036D319 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				845D518C2F15335B0036D319 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				845D518D2F15335B0036D319 /* XStreamPlayUITests */,
+			);
+			name = XStreamPlayUITests;
+			packageProductDependencies = (
+			);
+			productName = XStreamPlayUITests;
+			productReference = 845D518A2F15335B0036D319 /* XStreamPlayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		845D51622F1533590036D319 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					845D51692F1533590036D319 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					845D517F2F15335B0036D319 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 845D51692F1533590036D319;
+					};
+					845D51892F15335B0036D319 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 845D51692F1533590036D319;
+					};
+				};
+			};
+			buildConfigurationList = 845D51652F1533590036D319 /* Build configuration list for PBXProject "XStreamPlay" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 845D51612F1533590036D319;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				845D51D52F1537090036D319 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				84777BD52F153DD100B03266 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 845D516B2F1533590036D319 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				845D51692F1533590036D319 /* XStreamPlay */,
+				845D517F2F15335B0036D319 /* XStreamPlayTests */,
+				845D51892F15335B0036D319 /* XStreamPlayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		845D51682F1533590036D319 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D517E2F15335B0036D319 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D51882F15335B0036D319 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		845D51662F1533590036D319 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D517C2F15335B0036D319 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		845D51862F15335B0036D319 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		845D51822F15335B0036D319 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 845D51692F1533590036D319 /* XStreamPlay */;
+			targetProxy = 845D51812F15335B0036D319 /* PBXContainerItemProxy */;
+		};
+		845D518C2F15335B0036D319 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 845D51692F1533590036D319 /* XStreamPlay */;
+			targetProxy = 845D518B2F15335B0036D319 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		845D51942F15335B0036D319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XStreamPlay/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		845D51952F15335B0036D319 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XStreamPlay/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		845D51962F15335B0036D319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		845D51972F15335B0036D319 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		845D51992F15335B0036D319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XStreamPlay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/XStreamPlay";
+			};
+			name = Debug;
+		};
+		845D519A2F15335B0036D319 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XStreamPlay.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/XStreamPlay";
+			};
+			name = Release;
+		};
+		845D519C2F15335B0036D319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = XStreamPlay;
+			};
+			name = Debug;
+		};
+		845D519D2F15335B0036D319 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QU4LP928ZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nexttrillion.com.XStreamPlayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = XStreamPlay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		845D51652F1533590036D319 /* Build configuration list for PBXProject "XStreamPlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845D51962F15335B0036D319 /* Debug */,
+				845D51972F15335B0036D319 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		845D51932F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845D51942F15335B0036D319 /* Debug */,
+				845D51952F15335B0036D319 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		845D51982F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845D51992F15335B0036D319 /* Debug */,
+				845D519A2F15335B0036D319 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		845D519B2F15335B0036D319 /* Build configuration list for PBXNativeTarget "XStreamPlayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845D519C2F15335B0036D319 /* Debug */,
+				845D519D2F15335B0036D319 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		845D51D52F1537090036D319 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+		84777BD52F153DD100B03266 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		845D51D62F15370A0036D319 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845D51D52F1537090036D319 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		84777BD62F153DD100B03266 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84777BD52F153DD100B03266 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 845D51622F1533590036D319 /* Project object */;
+}
