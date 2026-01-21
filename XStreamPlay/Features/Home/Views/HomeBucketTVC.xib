@@ -36,12 +36,12 @@
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GqD-rH-Wp1">
-                                                <rect key="frame" x="280" y="0.0" width="30" height="35"/>
+                                                <rect key="frame" x="280" y="1.9999999999999982" width="30" height="31.333333333333329"/>
                                                 <color key="tintColor" name="TextPrimary"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="kDW-Rk-lRV"/>
                                                 </constraints>
-                                                <imageReference key="image" image="arrow.right" catalog="system" symbolScale="large"/>
+                                                <imageReference key="image" image="chevron.right" catalog="system" symbolScale="medium"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rja-PN-nGQ">
                                                 <rect key="frame" x="284" y="0.0" width="30" height="35"/>
@@ -120,7 +120,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
         <namedColor name="TextPrimary">
             <color red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

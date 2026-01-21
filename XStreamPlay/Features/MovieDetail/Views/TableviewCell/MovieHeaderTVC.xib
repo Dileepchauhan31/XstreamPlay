@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="345" id="KGk-i7-Jjw" customClass="MovieHeaderTVC" customModule="XStreamPlay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4m-Mo-AEL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient-8b-srgb-alpha.png" translatesAutoresizingMaskIntoConstraints="NO" id="dCp-Va-TaA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="420" id="25S-sL-G2z"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d40-NK-qtQ" customClass="GradientView" customModule="XStreamPlay" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="376" width="320" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ttY-qZ-Na6"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xZc-gS-tUK">
+                                <rect key="frame" x="16" y="365" width="288" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8g-hC-O54">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="-0.5"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvk-pJ-Two">
+                                        <rect key="frame" x="0.0" y="30" width="288" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="RMg-sm-4dI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dCp-Va-TaA" firstAttribute="top" secondItem="K4m-Mo-AEL" secondAttribute="top" id="Av9-B4-piu"/>
+                            <constraint firstAttribute="trailing" secondItem="d40-NK-qtQ" secondAttribute="trailing" id="IAE-SH-RPO"/>
+                            <constraint firstAttribute="trailing" secondItem="dCp-Va-TaA" secondAttribute="trailing" id="LOo-TT-2cI"/>
+                            <constraint firstItem="xZc-gS-tUK" firstAttribute="leading" secondItem="K4m-Mo-AEL" secondAttribute="leading" constant="16" id="U0o-OV-tqI"/>
+                            <constraint firstAttribute="bottom" secondItem="d40-NK-qtQ" secondAttribute="bottom" id="b1G-p2-OWg"/>
+                            <constraint firstItem="dCp-Va-TaA" firstAttribute="leading" secondItem="K4m-Mo-AEL" secondAttribute="leading" id="ddJ-Id-GVY"/>
+                            <constraint firstAttribute="trailing" secondItem="xZc-gS-tUK" secondAttribute="trailing" constant="16" id="kxH-v3-LJt"/>
+                            <constraint firstAttribute="bottom" secondItem="xZc-gS-tUK" secondAttribute="bottom" constant="5" id="u9D-XR-h34"/>
+                            <constraint firstItem="d40-NK-qtQ" firstAttribute="leading" secondItem="K4m-Mo-AEL" secondAttribute="leading" id="vOr-Un-QS9"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwz-uu-CCE" customClass="GradientView" customModule="XStreamPlay" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="plC-FI-AOy"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="K4m-Mo-AEL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2i2-Ve-5wo"/>
+                    <constraint firstItem="K4m-Mo-AEL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3vj-aZ-PcV"/>
+                    <constraint firstItem="Uwz-uu-CCE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6Dp-UN-SGQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Uwz-uu-CCE" secondAttribute="trailing" id="Blq-hO-wqJ"/>
+                    <constraint firstItem="Uwz-uu-CCE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ddA-V1-b0W"/>
+                    <constraint firstAttribute="trailing" secondItem="K4m-Mo-AEL" secondAttribute="trailing" id="nJL-BE-0LR"/>
+                    <constraint firstAttribute="bottom" secondItem="K4m-Mo-AEL" secondAttribute="bottom" id="ntF-5n-qOH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="movieImageView" destination="dCp-Va-TaA" id="bm7-Xv-Wmk"/>
+                <outlet property="subTitle" destination="zvk-pJ-Two" id="ac1-Hg-uef"/>
+                <outlet property="titleLabel" destination="K8g-hC-O54" id="BDe-gX-cth"/>
+            </connections>
+            <point key="canvasLocation" x="126.71755725190839" y="0.35211267605633806"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="gradient-8b-srgb-alpha.png" width="64" height="64"/>
+    </resources>
+</document>

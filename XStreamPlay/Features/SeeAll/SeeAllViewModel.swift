@@ -41,7 +41,7 @@ final class SeeAllViewModel {
 
         NetworkManager.shared
             .request(
-                url: endpointProvider(page), // ✅ String
+                url: endpointProvider(page),
                 method: .get
             )
             .sink(

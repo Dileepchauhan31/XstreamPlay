@@ -17,6 +17,7 @@ final class HomeBucketTVC: UITableViewCell {
 
     // MARK: - Properties
     private var viewModel: HomeBucketViewModel?
+    weak var delegate: MovieCellDelegate?
     var onSeeAllTapped: (() -> Void)?
 
     // MARK: - Lifecycle
@@ -128,6 +129,8 @@ extension HomeBucketTVC: UICollectionViewDataSource,
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         FeedbackManager.trigger(.light)
         cell.pop()
+        delegate?.didSelectMovie(movieId: viewModel?.movies[indexPath.item].id ?? 0)
+        
     }
 
     
@@ -144,6 +147,5 @@ extension HomeBucketTVC: UICollectionViewDataSource,
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.pop()
     }
-
 
 }

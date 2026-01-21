@@ -21,9 +21,13 @@ final class SeeAllViewController: UIViewController, StoryboardIdentifiable{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        title = viewModel.title
-
+        title = viewModel.title
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        
         setupCollectionView()
+        adjustmentBehavior()
         bindViewModel()
         viewModel.fetchNextPage()
     }
@@ -32,6 +36,33 @@ final class SeeAllViewController: UIViewController, StoryboardIdentifiable{
 
 private extension SeeAllViewController {
 
+    private func adjustmentBehavior() {
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        collectionView.backgroundColor = .clear
+    }
+
+    
+    
+    private func setupNavigationBarAppearance() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        
+        let scrollEdgeAppearance = UINavigationBarAppearance()
+        scrollEdgeAppearance.configureWithTransparentBackground()
+        scrollEdgeAppearance.backgroundColor = .clear
+        scrollEdgeAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+        scrollEdgeAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+
+        let standardAppearance = UINavigationBarAppearance()
+        standardAppearance.configureWithDefaultBackground()
+        standardAppearance.backgroundEffect = UIBlurEffect(style: .systemMaterialLight)
+        standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+        navigationBar.scrollEdgeAppearance = scrollEdgeAppearance
+        navigationBar.standardAppearance = standardAppearance
+        navigationBar.compactAppearance = standardAppearance
+    }
+
+    
     func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -98,9 +129,9 @@ extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
         let columns: CGFloat = 3
         let spacing: CGFloat = 8
 
-        let totalSpacing = spacing * (columns + 1) // 3 cells + left/right
+        let totalSpacing = spacing * (columns + 1)
         let width = (collectionView.bounds.width - totalSpacing) / columns
-        let height = width * 1.55  // poster aspect ratio
+        let height = width * 1.55
 
         return CGSize(width: width, height: height)
     }

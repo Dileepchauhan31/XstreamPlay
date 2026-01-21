@@ -26,6 +26,24 @@ public enum NetworkError: Error {
     case unknown(Error)
 }
 
+public extension NetworkError {
+    
+    var userMessage: String {
+        switch self {
+        case .invalidURL:
+            return "Invalid URL"
+        case .noData:
+            return "No data received"
+        case .decodingFailed:
+            return "Failed to decode response"
+        case .serverError(let code):
+            return "Server error: \(code)"
+        case .unknown:
+            return "Something went wrong"
+        }
+    }
+}
+
 // MARK: - NetworkManager
 public final class NetworkManager {
 

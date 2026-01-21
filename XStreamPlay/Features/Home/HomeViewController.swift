@@ -8,8 +8,8 @@
 import UIKit
 import Combine
 
-final class HomeViewController: UIViewController {
-
+final class HomeViewController: UIViewController, MovieCellDelegate, StoryboardIdentifiable {
+   
     @IBOutlet weak var tableView: UITableView!
 
     private let viewModel = HomeViewModel()
@@ -65,6 +65,7 @@ extension HomeViewController: UITableViewDataSource {
 
         let bucketViewModel = viewModel.buckets[indexPath.row]
         cell.configure(with: bucketViewModel)
+        cell.delegate = self
         cell.onSeeAllTapped = { [weak self] in
                self?.openSeeAll(for: bucketViewModel)
            }
@@ -74,18 +75,11 @@ extension HomeViewController: UITableViewDataSource {
     
     private func openSeeAll(for bucketVM: HomeBucketViewModel) {
         debugPrint("code is working here")
-        // ✅ Create SeeAll ViewModel
-        let seeAllVM = SeeAllViewModel(
-            title: bucketVM.title,
-            endpointProvider: { page in
-                bucketVM.type.endpoint(page: page)
-            }
-        )
+    
+        let seeAllVM = SeeAllViewModel(title: bucketVM.title,
+            endpointProvider: { page in bucketVM.type.endpoint(page: page)})
 
-        // ✅ Instantiate VC
-        let vc: SeeAllViewController =
-        Storyboard.home.instance.instantiate()
-
+        let vc: SeeAllViewController = Storyboard.home.instance.instantiate()
         vc.viewModel = seeAllVM
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -100,4 +94,20 @@ extension HomeViewController: UITableViewDelegate {
 //        return viewModel.buckets[indexPath.row].cellHeight
         return 210
     }
+    
+//    func didSelectMovie(movieId:Int) {
+//        print("movieId",movieId)
+//        let vc: MovieDetailsViewController = Storyboard.home.instance.instantiate()
+//        vc.movieId = movieId
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
+    
+    func didSelectMovie(movieId: Int) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",style: .plain,target: nil,action: nil)
+        let vc: MovieDetailsViewController = Storyboard.home.instance.instantiate()
+        vc.movieId = movieId
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }

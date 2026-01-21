@@ -11,6 +11,9 @@ import Kingfisher
 enum TMDBImageConfig {
     static let baseURL = "https://image.tmdb.org/t/p/"
     static let posterSize = "w500"
+    static let posterThumbnail = "w185"
+    static let posterSmall = "w154"
+    static let extraLarge = "w1920_and_h1080_bestv2/"
 }
 
 final class HomeMovieCVC: UICollectionViewCell {

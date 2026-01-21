@@ -7,48 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0676B46A-D475-4429-9E4D-0C583E368538"
+            uuid = "4732C99B-9AAA-4F33-9AE7-947C8A31913F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XStreamPlay/Features/Home/HomeBucketViewModel.swift"
+            filePath = "XStreamPlay/Features/MovieDetail/Views/TableviewCell/MovieHeaderTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "fetchNextPage()"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "configData(movie:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55B1AEFE-9490-4070-B1DB-B5A01D69ED88"
+            uuid = "0F4A3F10-64C2-493F-9917-8F92E0EA7D90"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XStreamPlay/Features/Home/HomeBucketViewModel.swift"
+            filePath = "XStreamPlay/Features/MovieDetail/Views/TableviewCell/MovieHeaderTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "fetchNextPage()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "buildSubtitle(movie:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D508C6AD-714D-4698-BD52-B26FB645B97C"
+            uuid = "5F7DA6D2-C97A-419E-8161-0E56D0A27302"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XStreamPlay/Features/Home/HomeBucketViewModel.swift"
+            filePath = "XStreamPlay/Features/MovieDetail/Views/TableviewCell/MovieHeaderTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "fetchNextPage()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "configData(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E434FF3-04CA-4F50-B5F8-10D3471FBEAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XStreamPlay/Features/MovieDetail/Views/TableviewCell/MovieHeaderTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "configData(movie:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
