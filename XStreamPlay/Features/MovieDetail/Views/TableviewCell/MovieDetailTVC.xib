@@ -200,7 +200,7 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnb-q3-FAj">
                                                         <rect key="frame" x="15.333333333333343" y="-3.0000000000000018" width="29" height="26.333333333333336"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <imageReference key="image" image="movieclapper" catalog="system" symbolScale="large"/>
+                                                        <imageReference key="image" image="film" catalog="system" symbolScale="large"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         </preferredSymbolConfiguration>
@@ -291,7 +291,7 @@
     </objects>
     <resources>
         <image name="arrow.down.to.line.compact" catalog="system" width="128" height="128"/>
-        <image name="movieclapper" catalog="system" width="128" height="113"/>
+        <image name="film" catalog="system" width="128" height="93"/>
         <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>

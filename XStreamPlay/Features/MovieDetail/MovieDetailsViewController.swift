@@ -44,9 +44,8 @@ class MovieDetailsViewController: UIViewController, StoryboardIdentifiable {
         DetailtableView.rowHeight = UITableView.automaticDimension
         DetailtableView.estimatedRowHeight = 500
         
-        if #available(iOS 15, *) {
-            DetailtableView.sectionHeaderTopPadding = 0
-        }
+        // iOS 15 is the minimum deployment target, so no availability check is needed.
+        DetailtableView.sectionHeaderTopPadding = 0
     }
 
     
