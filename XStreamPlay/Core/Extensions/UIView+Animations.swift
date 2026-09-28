@@ -7,8 +7,10 @@
 
 import UIKit
 
+/// Small touch animations used by cells and buttons.
 extension UIView {
 
+    /// Shrinks slightly, then springs back. Used when a poster is tapped.
     func pop() {
         UIView.animate(withDuration: 0.12,
                        animations: {
@@ -32,52 +34,6 @@ extension UIView {
     func releasePress() {
         UIView.animate(withDuration: 0.1) {
             self.transform = .identity
-        }
-    }
-}
-
-//MARK: - radius and its colors 
-
-extension UIView {
-
-    @IBInspectable var ibCornerRadius: CGFloat {
-        get {
-            layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
-        }
-    }
-
-    @IBInspectable var ibBorderWidth: CGFloat {
-        get {
-            layer.borderWidth
-        }
-        set {
-            layer.borderWidth = newValue
-        }
-    }
-
-  
-    @IBInspectable var ibBorderColor: UIColor {
-        get {
-            UIColor(cgColor: layer.borderColor ?? UIColor.clear.cgColor)
-        }
-        set {
-            layer.borderColor = newValue.cgColor
-        }
-    }
-
-    @IBInspectable var ibMakeCircle: Bool {
-        get { false }
-        set {
-            if newValue {
-                DispatchQueue.main.async {
-                    self.layer.cornerRadius = self.bounds.height / 2
-                    self.layer.masksToBounds = true
-                }
-            }
         }
     }
 }

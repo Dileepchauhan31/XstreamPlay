@@ -5,68 +5,71 @@
 //  Created by Dileep chauhan on 12/01/26.
 //
 
-import Foundation
 import Combine
-import UIKit
+import Foundation
 
+/// State for the Home screen: one rail of titles per `MovieRail`.
+///
+/// Knows only the `MovieListRepository` protocol, never TMDB, URLs or UIKit.
+@MainActor
 final class HomeViewModel {
 
-    // MARK: - Public
+    // MARK: - Output
 
-    let buckets: [HomeBucketViewModel]
+    /// One entry per rail, in display order.
+    @Published private(set) var rails: [MovieRailContent]
+
+    /// Set when a rail fails to load. One message for the whole screen, so a
+    /// dropped connection doesn't produce five alerts.
+    @Published private(set) var errorMessage: String?
+
+    // MARK: - Dependencies
+
+    /// One loader per rail, same order as `rails`.
+    private let loaders: [PaginatedMovieLoader]
 
     // MARK: - Init
 
-    init() {
-        buckets = HomeViewModel.createBuckets()
+    init(rails: [MovieRail], repository: MovieListRepository) {
+        self.rails = rails.map { MovieRailContent(rail: $0, movies: []) }
+        self.loaders = rails.map { PaginatedMovieLoader(source: $0.source, repository: repository) }
+    }
+
+    // MARK: - Loading
+
+    /// Loads the first page of every rail that is still empty, all at once.
+    /// Also used for Retry: rails that already have titles are left alone.
+    func load() async {
+        errorMessage = nil
+
+        await withTaskGroup(of: Int.self) { group in
+            for (index, loader) in loaders.enumerated() where loader.movies.isEmpty {
+                group.addTask {
+                    await loader.loadNextPage()
+                    return index
+                }
+            }
+            // Show each rail as soon as it arrives, not when the slowest one does.
+            for await index in group {
+                updateRail(at: index)
+            }
+        }
+
+        errorMessage = loaders.compactMap { $0.errorMessage }.first
+    }
+
+    /// Call when a poster in a rail is about to appear.
+    func loadMoreIfNeeded(railIndex: Int, displayedIndex: Int) async {
+        guard loaders.indices.contains(railIndex) else { return }
+        await loaders[railIndex].loadMoreIfNeeded(displayedIndex: displayedIndex)
+        updateRail(at: railIndex)
     }
 
     // MARK: - Private
 
-    private static func createBuckets() -> [HomeBucketViewModel] {
-        HomeBucketType.allCases.map { type in
-            switch type {
-            case .trending:
-                return HomeBucketViewModel(
-                    type: type,
-                    title: "Trending",
-                    showSeeAll: true,
-//                    cellHeight: 190,
-                    showPosterTitle: false
-                )
-            case .popular:
-                return HomeBucketViewModel(
-                    type: type,
-                    title: "Popular Movies",
-                    showSeeAll: true,
-//                    cellHeight: 230,
-                    showPosterTitle: true
-                )
-            case .upcoming:
-                return HomeBucketViewModel(
-                    type: type,
-                    title: "Upcoming",
-                    showSeeAll: false,
-//                    cellHeight: 190,
-                    showPosterTitle: false
-                )
-            case .topRated:
-                return HomeBucketViewModel(
-                    type: type,
-                    title: "Top Rated",
-                    showSeeAll: true,
-//                    cellHeight: 230,
-                    showPosterTitle: true
-                )
-            case .tvShows:
-                return HomeBucketViewModel(
-                    type: type,
-                    title: "Top Rated TVshows",
-                    showSeeAll: true,
-//                    cellHeight: 230,
-                    showPosterTitle: true
-                )
-            }
-        }
+    private func updateRail(at index: Int) {
+        let movies = loaders[index].movies
+        guard rails[index].movies != movies else { return }
+        rails[index].movies = movies
     }
 }

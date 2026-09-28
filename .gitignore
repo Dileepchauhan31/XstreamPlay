@@ -1,0 +1,32 @@
+# ---- Secrets (never commit) -------------------------------------------------
+Secrets.xcconfig
+
+# ---- Xcode user state -------------------------------------------------------
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# ---- Build output -----------------------------------------------------------
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ---- Swift Package Manager --------------------------------------------------
+.build/
+.swiftpm/
+
+# ---- Fastlane ---------------------------------------------------------------
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# ---- macOS ------------------------------------------------------------------
+.DS_Store
+
+# ---- Local scratch ----------------------------------------------------------
+_refactor_backup/
+_to_delete/

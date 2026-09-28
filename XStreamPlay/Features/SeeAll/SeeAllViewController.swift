@@ -6,151 +6,180 @@
 //
 
 import UIKit
+
 import Combine
 
-final class SeeAllViewController: UIViewController, StoryboardIdentifiable{
+/// A three-column grid of every title in a list, with infinite scrolling.
+///
+/// Create it with `AppDIContainer.makeSeeAllViewController(title:source:router:)`.
+final class SeeAllViewController: UIViewController, StoryboardIdentifiable {
+
+    typealias Router = MovieDetailsRouting
 
     // MARK: - Outlets
-    @IBOutlet weak var collectionView: UICollectionView!
 
-    // MARK: - Properties
-    var viewModel: SeeAllViewModel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+
+    // MARK: - Dependencies
+
+    private let viewModel: SeeAllViewModel
+    private weak var router: Router?
+    private let haptics: HapticFeedbackProviding
+
+    // MARK: - State
+
+    /// The view's own copy of the titles. The data source reads only this.
+    private var movies: [Movie] = []
     private var cancellables = Set<AnyCancellable>()
 
+    private enum Layout {
+        static let columns: CGFloat = 3
+        static let spacing: CGFloat = 8
+        /// Poster height divided by width, plus room for the title.
+        static let heightRatio: CGFloat = 1.55
+    }
+
+    // MARK: - Init
+
+    init?(coder: NSCoder, viewModel: SeeAllViewModel, router: Router, haptics: HapticFeedbackProviding) {
+        self.viewModel = viewModel
+        self.router = router
+        self.haptics = haptics
+        super.init(coder: coder)
+    }
+
+    @available(*, unavailable, message: "Use AppDIContainer.makeSeeAllViewController(title:source:router:)")
+    required init?(coder: NSCoder) {
+        fatalError("SeeAllViewController needs its dependencies. Use AppDIContainer.makeSeeAllViewController(title:source:router:).")
+    }
+
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = viewModel.title
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        
         setupCollectionView()
-        adjustmentBehavior()
         bindViewModel()
-        viewModel.fetchNextPage()
-    }
-}
-
-
-private extension SeeAllViewController {
-
-    private func adjustmentBehavior() {
-        collectionView.contentInsetAdjustmentBehavior = .automatic
-        collectionView.backgroundColor = .clear
+        loadNextPage()
     }
 
-    
-    
-    private func setupNavigationBarAppearance() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        
-        let scrollEdgeAppearance = UINavigationBarAppearance()
-        scrollEdgeAppearance.configureWithTransparentBackground()
-        scrollEdgeAppearance.backgroundColor = .clear
-        scrollEdgeAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        scrollEdgeAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+    // MARK: - Setup
 
-        let standardAppearance = UINavigationBarAppearance()
-        standardAppearance.configureWithDefaultBackground()
-        standardAppearance.backgroundEffect = UIBlurEffect(style: .systemMaterialLight)
-        standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-
-        navigationBar.scrollEdgeAppearance = scrollEdgeAppearance
-        navigationBar.standardAppearance = standardAppearance
-        navigationBar.compactAppearance = standardAppearance
-    }
-
-    
-    func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(HomeMovieCVC.loadNib(),forCellWithReuseIdentifier: HomeMovieCVC.identifier) }
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        collectionView.backgroundColor = .clear
+        collectionView.register(MoviePosterCell.self)
+    }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         viewModel.$movies
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] movies in
+                self?.movies = movies
                 self?.collectionView.reloadData()
             }
             .store(in: &cancellables)
+
+        viewModel.$errorMessage
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] message in
+                self?.showError(message)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func showError(_ message: String) {
+        AppAlert.show(on: self, message: message) { [weak self] in
+            self?.loadNextPage()
+        }
+    }
+
+    // MARK: - Actions
+
+    private func loadNextPage() {
+        Task { [weak self] in
+            await self?.viewModel.loadNextPage()
+        }
     }
 }
 
+// MARK: - UICollectionViewDataSource
 
 extension SeeAllViewController: UICollectionViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        viewModel.movies.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        movies.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "HomeMovieCVC",
-            for: indexPath
-        ) as? HomeMovieCVC else {
-            return UICollectionViewCell()
-        }
-
-        let movie = viewModel.movies[indexPath.item]
-        cell.configure(with: movie, showBottomTitle: true)
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: MoviePosterCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.configure(with: movies[indexPath.item], showsTitle: true)
         return cell
     }
 }
 
+// MARK: - UICollectionViewDelegate
 
 extension SeeAllViewController: UICollectionViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-
-        let lastIndex = viewModel.movies.count - 1
-
-        if indexPath.item == lastIndex {
-            viewModel.fetchNextPage()
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        let index = indexPath.item
+        Task { [weak self] in
+            await self?.viewModel.loadMoreIfNeeded(displayedIndex: index)
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard movies.indices.contains(indexPath.item) else { return }
+        collectionView.cellForItem(at: indexPath)?.pop()
+        haptics.play(.light)
+        router?.showMovieDetails(for: movies[indexPath.item])
     }
 }
 
-
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let columns: CGFloat = 3
-        let spacing: CGFloat = 8
-
-        let totalSpacing = spacing * (columns + 1)
-        let width = (collectionView.bounds.width - totalSpacing) / columns
-        let height = width * 1.55
-
-        return CGSize(width: width, height: height)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let totalSpacing = Layout.spacing * (Layout.columns + 1)
+        let width = (collectionView.bounds.width - totalSpacing) / Layout.columns
+        return CGSize(width: width, height: width * Layout.heightRatio)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        Layout.spacing
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        Layout.spacing
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(top: Layout.spacing, left: Layout.spacing, bottom: Layout.spacing, right: Layout.spacing)
     }
 }

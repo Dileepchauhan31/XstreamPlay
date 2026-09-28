@@ -1,0 +1,25 @@
+//
+//  XStreamPlay.xcconfig
+//  XStreamPlay
+//
+//  Build settings for the XStreamPlay app target. Committed to git.
+//
+//  Values here are safe defaults. Secrets (the TMDB token) go in
+//  Secrets.xcconfig at the repository root, which is git-ignored and
+//  overrides anything below. New developer? Copy Secrets.example.xcconfig
+//  to Secrets.xcconfig and paste your token.
+//
+//  Flow: this file → Info.plist ($(TMDB_ACCESS_TOKEN) …) → AppEnvironment.swift
+//
+
+// Hosts only, without "https://": in .xcconfig files "//" starts a comment.
+TMDB_API_HOST = api.themoviedb.org
+TMDB_IMAGE_HOST = image.tmdb.org
+
+// Empty by default. The app still builds and runs without it, but every
+// request fails with "unauthorized" and the console says why.
+TMDB_ACCESS_TOKEN =
+
+// "#include?" (with the question mark) doesn't fail the build when the file
+// is missing, e.g. on a fresh clone or on CI before secrets are injected.
+#include? "../Secrets.xcconfig"

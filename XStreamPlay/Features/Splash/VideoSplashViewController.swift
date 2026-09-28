@@ -7,59 +7,115 @@
 
 import UIKit
 
-import UIKit
 import AVFoundation
 
-class VideoSplashViewController: UIViewController {
+/// Plays the intro video once, then calls `onFinish`.
+///
+/// It doesn't know what comes next: `AppCoordinator` decides that. If the
+/// video file is missing, it finishes straight away.
+final class VideoSplashViewController: UIViewController, StoryboardIdentifiable {
+
+    // MARK: - Dependencies
+
+    private let videoURL: URL?
+    private let onFinish: () -> Void
+
+    // MARK: - State
 
     private var player: AVPlayer?
+    private var playerLayer: AVPlayerLayer?
+    private var playbackObservers: [NSObjectProtocol] = []
+    private var hasFinished = false
+
+    /// Never keep the user on the splash longer than this, even if the video stalls.
+    private let maximumDuration: TimeInterval = 8
+
+    // MARK: - Init
+
+    init?(coder: NSCoder, videoURL: URL?, onFinish: @escaping () -> Void) {
+        self.videoURL = videoURL
+        self.onFinish = onFinish
+        super.init(coder: coder)
+    }
+
+    @available(*, unavailable, message: "Use AppDIContainer.makeSplashViewController(onFinish:)")
+    required init?(coder: NSCoder) {
+        fatalError("VideoSplashViewController needs its dependencies. Use AppDIContainer.makeSplashViewController(onFinish:).")
+    }
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        playVideo()
+        setupPlayer()
     }
 
-    private func playVideo() {
-        guard let path = Bundle.main.path(forResource: "splashVideo", ofType: "mp4") else {
-            goToMainScreen()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = view.bounds
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Finishing here, not in viewDidLoad, because the coordinator swaps
+        // the window's root; doing that before this screen is on screen is unsafe.
+        guard let player else {
+            finish()
+            return
+        }
+        player.play()
+
+        let timeout = UInt64(maximumDuration * 1_000_000_000)
+        Task { [weak self] in
+            try? await Task.sleep(nanoseconds: timeout)
+            self?.finish()
+        }
+    }
+
+    // MARK: - Setup
+
+    private func setupPlayer() {
+        guard let videoURL else {
+            Log.ui.error("Splash video not found in the app bundle.")
             return
         }
 
-        let url = URL(fileURLWithPath: path)
-        player = AVPlayer(url: url)
+        let player = AVPlayer(url: videoURL)
+        player.isMuted = true
 
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = view.bounds
         playerLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(playerLayer)
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(videoDidFinish),
-            name: .AVPlayerItemDidPlayToEndTime,
-            object: player?.currentItem
-        )
-        player?.isMuted = true
-//        player?.playImmediately(atRate: 1.5)
-        player?.play()
+        // Finish when the video ends OR fails, so a broken file can't trap the
+        // user here. Delivered on the main queue because `onFinish` changes the window.
+        let endNotifications: [Notification.Name] = [
+            .AVPlayerItemDidPlayToEndTime,
+            .AVPlayerItemFailedToPlayToEndTime
+        ]
+        playbackObservers = endNotifications.map { name in
+            NotificationCenter.default.addObserver(forName: name, object: player.currentItem, queue: .main) { [weak self] _ in
+                Task { @MainActor [weak self] in
+                    self?.finish()
+                }
+            }
+        }
+
+        self.player = player
+        self.playerLayer = playerLayer
     }
 
-    @objc private func videoDidFinish() {
-        goToMainScreen()
-    }
+    // MARK: - Private
 
-    private func goToMainScreen() {
-        let homeVC: HomeViewController = Storyboard.main.instance.instantiate()
-
-        let navController = UINavigationController(rootViewController: homeVC)
-        navController.modalTransitionStyle = .crossDissolve
-        navController.modalPresentationStyle = .fullScreen
-        UIApplication.shared.windows.first?.rootViewController = navController
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    /// Calls `onFinish` once, even if the video ends and something else also
+    /// calls this.
+    private func finish() {
+        guard !hasFinished else { return }
+        hasFinished = true
+        playbackObservers.forEach { NotificationCenter.default.removeObserver($0) }
+        playbackObservers = []
+        player?.pause()
+        onFinish()
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
 }

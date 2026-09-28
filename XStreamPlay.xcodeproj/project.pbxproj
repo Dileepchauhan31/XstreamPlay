@@ -32,6 +32,7 @@
 		845D516A2F1533590036D319 /* XStreamPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XStreamPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845D51802F15335B0036D319 /* XStreamPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XStreamPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		845D518A2F15335B0036D319 /* XStreamPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XStreamPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A1C0DE2F80000100B0A001 /* XStreamPlay.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = XStreamPlay.xcconfig; path = Configurations/XStreamPlay.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -95,6 +96,7 @@
 		845D51612F1533590036D319 = {
 			isa = PBXGroup;
 			children = (
+				84A1C0DE2F80000100B0A001 /* XStreamPlay.xcconfig */,
 				845D516C2F1533590036D319 /* XStreamPlay */,
 				845D51832F15335B0036D319 /* XStreamPlayTests */,
 				845D518D2F15335B0036D319 /* XStreamPlayUITests */,
@@ -297,6 +299,7 @@
 /* Begin XCBuildConfiguration section */
 		845D51942F15335B0036D319 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A1C0DE2F80000100B0A001 /* XStreamPlay.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -307,7 +310,6 @@
 				INFOPLIST_FILE = XStreamPlay/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -326,6 +328,7 @@
 		};
 		845D51952F15335B0036D319 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A1C0DE2F80000100B0A001 /* XStreamPlay.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -336,7 +339,6 @@
 				INFOPLIST_FILE = XStreamPlay/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

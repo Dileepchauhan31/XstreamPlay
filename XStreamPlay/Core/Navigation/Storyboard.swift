@@ -7,12 +7,15 @@
 
 import UIKit
 
+/// Every storyboard in the app. One storyboard per feature, named after its
+/// folder in `Features/`.
 enum Storyboard: String {
-    case main = "Main"
+    case splash = "Splash"
     case home = "Home"
+    case seeAll = "SeeAll"
+    case movieDetails = "MovieDetails"
 
     var instance: UIStoryboard {
         UIStoryboard(name: rawValue, bundle: nil)
     }
 }
-

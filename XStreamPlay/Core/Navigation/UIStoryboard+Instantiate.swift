@@ -9,15 +9,17 @@ import UIKit
 
 extension UIStoryboard {
 
-    func instantiate<T: UIViewController & StoryboardIdentifiable>() -> T {
-        guard let vc = instantiateViewController(
-            withIdentifier: T.storyboardID
-        ) as? T else {
-            fatalError("Could not instantiate \(T.storyboardID)")
-        }
-        return vc
+    /// Creates a storyboard screen through your own initializer, so it gets its
+    /// dependencies in `init` (constructor injection):
+    ///
+    ///     Storyboard.home.instance.instantiate { coder in
+    ///         HomeViewController(coder: coder, viewModel: viewModel, router: router, haptics: haptics)
+    ///     }
+    ///
+    /// Only `AppDIContainer` should call this.
+    func instantiate<ViewController: UIViewController & StoryboardIdentifiable>(
+        creator: @escaping (NSCoder) -> ViewController?
+    ) -> ViewController {
+        instantiateViewController(identifier: ViewController.storyboardID, creator: creator)
     }
 }
-
-
-

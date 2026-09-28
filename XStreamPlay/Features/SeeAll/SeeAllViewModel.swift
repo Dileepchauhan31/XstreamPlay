@@ -5,60 +5,55 @@
 //  Created by Dileep chauhan on 15/01/26.
 //
 
-import Foundation
 import Combine
+import Foundation
 
+/// State for the See All grid: every title in one list, loaded page by page.
+@MainActor
 final class SeeAllViewModel {
 
-    // MARK: - Properties
+    // MARK: - Output
+
     let title: String
-    let endpointProvider: (Int) -> String
-
     @Published private(set) var movies: [Movie] = []
+    @Published private(set) var errorMessage: String?
 
-    // MARK: - Pagination
-    private var page = 1
-    private var isLoading = false
-    private var canLoadMore = true
+    // MARK: - Dependencies
 
-    // MARK: - Combine
-    private var cancellables = Set<AnyCancellable>()
+    private let loader: PaginatedMovieLoader
 
     // MARK: - Init
-    init(
-        title: String,
-        endpointProvider: @escaping (Int) -> String
-    ) {
+
+    init(title: String, source: MovieListSource, repository: MovieListRepository) {
         self.title = title
-        self.endpointProvider = endpointProvider
+        self.loader = PaginatedMovieLoader(source: source, repository: repository)
     }
 
-    // MARK: - API
-    func fetchNextPage() {
-        guard !isLoading, canLoadMore else { return }
+    // MARK: - Loading
 
-        isLoading = true
+    /// First load and Retry.
+    func loadNextPage() async {
+        errorMessage = nil
+        await loader.loadNextPage()
+        publishLoaderState()
+    }
 
-        NetworkManager.shared
-            .request(
-                url: endpointProvider(page),
-                method: .get
-            )
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    self?.isLoading = false
-                    if case .failure = completion {
-                        self?.canLoadMore = false
-                    }
-                },
-                receiveValue: { [weak self] (response: TMDBListResponse<Movie>) in
-                    guard let self else { return }
+    /// Call when a cell is about to appear.
+    func loadMoreIfNeeded(displayedIndex: Int) async {
+        await loader.loadMoreIfNeeded(displayedIndex: displayedIndex)
+        publishLoaderState()
+    }
 
-                    self.page += 1
-                    self.canLoadMore = !response.results.isEmpty
-                    self.movies.append(contentsOf: response.results)
-                }
-            )
-            .store(in: &cancellables)
+    // MARK: - Private
+
+    private func publishLoaderState() {
+        if movies != loader.movies {
+            movies = loader.movies
+        }
+        // Only publish a change, so scrolling past a failed page doesn't
+        // show the same alert again and again.
+        if errorMessage != loader.errorMessage {
+            errorMessage = loader.errorMessage
+        }
     }
 }
