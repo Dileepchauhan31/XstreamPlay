@@ -17,6 +17,7 @@ final class HomeBucketTVC: UITableViewCell {
 
     // MARK: - Properties
     private var viewModel: HomeBucketViewModel?
+    static let identifier = "HomeBucketTVC"
     weak var delegate: MovieCellDelegate?
     var onSeeAllTapped: (() -> Void)?
 

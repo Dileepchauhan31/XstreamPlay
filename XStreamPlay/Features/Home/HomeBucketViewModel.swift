@@ -17,7 +17,7 @@ final class HomeBucketViewModel {
 //    let cellHeight: CGFloat
     let showPosterTitle: Bool
 
-    @Published private(set) var movies: [Movie] = []
+    @Published private(set) var movies: [Model_Result] = []
 
     // MARK: - Pagination
     private var page = 1
@@ -61,12 +61,12 @@ final class HomeBucketViewModel {
                         self?.canLoadMore = false
                     }
                 },
-                receiveValue: { [weak self] (response: TMDBListResponse<Movie>) in
+                receiveValue: { [weak self] (response: TMDBListResponse) in
                     guard let self else { return }
 
                     self.page += 1
-                    self.canLoadMore = !response.results.isEmpty
-                    self.movies.append(contentsOf: response.results)
+                    self.canLoadMore = !(response.results?.isEmpty ?? false)
+                    self.movies.append(contentsOf: response.results ?? [])
                 }
             )
             .store(in: &cancellables)

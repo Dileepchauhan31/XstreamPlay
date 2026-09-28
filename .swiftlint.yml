@@ -1,0 +1,113 @@
+# SwiftLint configuration for XStreamPlay
+#
+# Install:  brew install swiftlint
+# Run:      swiftlint --fix && swiftlint
+#
+# To wire it into the build, add a "Run Script Phase" to the XStreamPlay target
+# (Build Phases → + → New Run Script Phase) containing:
+#
+#   if which swiftlint > /dev/null; then swiftlint; fi
+
+included:
+  - XStreamPlay
+  - XStreamPlayTests
+
+excluded:
+  - XStreamPlay/Resources
+  - "**/*.generated.swift"
+
+disabled_rules:
+  - trailing_whitespace       # noisy, handled by the formatter
+  - todo                      # TODOs are tracked deliberately during the rebuild
+
+opt_in_rules:
+  - array_init
+  - closure_spacing
+  - collection_alignment
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - force_unwrapping          # the whole point of Week 1
+  - implicitly_unwrapped_optional
+  - last_where
+  - literal_expression_end_indentation
+  - modifier_order
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prefer_self_type_over_type_of_self
+  - redundant_nil_coalescing
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - unused_import
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+analyzer_rules:
+  - unused_declaration
+
+line_length:
+  warning: 130
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+type_body_length:
+  warning: 300
+  error: 450
+
+file_length:
+  warning: 450
+  error: 700
+
+function_body_length:
+  warning: 60
+  error: 100
+
+cyclomatic_complexity:
+  warning: 12
+  error: 20
+
+identifier_name:
+  min_length:
+    warning: 2
+  excluded: [id, vc, x, y, to, at]
+
+type_name:
+  min_length: 3
+  max_length:
+    warning: 50
+
+nesting:
+  type_level: 2
+
+# IBOutlets are implicitly unwrapped by design — exempt them.
+implicitly_unwrapped_optional:
+  mode: all_except_iboutlets
+
+force_unwrapping:
+  severity: error
+
+force_cast:
+  severity: error
+
+force_try:
+  severity: error
+
+custom_rules:
+  no_print:
+    name: "print() in app code"
+    regex: '(^|\s)print\('
+    message: "Use Log.<category> (OSLog) instead of print()."
+    severity: error
+    match_kinds: [identifier]
+
+  no_hardcoded_token:
+    name: "Hardcoded credential"
+    regex: '(?i)(bearer\s+eyJ|api_?key\s*=\s*"[A-Za-z0-9_\-\.]{20,})'
+    message: "Credentials belong in Secrets.xcconfig, never in source."
+    severity: error
+
+reporter: "xcode"

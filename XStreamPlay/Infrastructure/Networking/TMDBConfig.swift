@@ -7,9 +7,23 @@
 
 import Foundation
 
-public enum TMDBConfig {
-    public static let baseURL = "https://api.themoviedb.org/3"
-    public static let apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGQxZTE1YTc5NjA0NzE2OWViYWI2MzNhYzY0N2Y0MiIsIm5iZiI6MTc2Nzk0MDUxMi45NDMsInN1YiI6IjY5NjBhMWEwYjUyOTk5Yzc5ZTM2M2YyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QYN-q1pXsmOtItYAuG3anJxFo8u_bzXL400acUzmfuo"
-    
-    public static let bearerToken =  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGQxZTE1YTc5NjA0NzE2OWViYWI2MzNhYzY0N2Y0MiIsIm5iZiI6MTc2Nzk0MDUxMi45NDMsInN1YiI6IjY5NjBhMWEwYjUyOTk5Yzc5ZTM2M2YyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QYN-q1pXsmOtItYAuG3anJxFo8u_bzXL400acUzmfuo"
+/// Thin compatibility shim over `AppEnvironment`.
+///
+/// The credential that used to live here as a string literal is gone; nothing in
+/// this file is a secret any more. Values resolve at runtime from
+/// `Secrets.xcconfig` → `Info.plist` → `AppEnvironment`.
+///
+/// - TODO: Delete in Week 2. Call sites should build requests with `Endpoint`
+///   and let `URLSessionAPIClient` supply the base URL and token.
+enum TMDBConfig {
+
+    /// e.g. `https://api.themoviedb.org/3`
+    static var baseURL: String {
+        AppEnvironment.apiBaseURL.absoluteString
+    }
+
+    /// TMDB v4 Read Access Token. Sent as a bearer header, never as a query item.
+    static var bearerToken: String {
+        AppEnvironment.tmdbAccessToken
+    }
 }

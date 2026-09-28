@@ -137,6 +137,10 @@
                 <constraint firstItem="Xjh-nb-Wax" firstAttribute="top" secondItem="eTa-vK-nog" secondAttribute="top" id="sA2-Gm-wg3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="orM-lw-88J" id="Zg2-yY-KEa"/>
+                <outlet property="underlineView" destination="svJ-gh-hKQ" id="0tu-y6-UBJ"/>
+            </connections>
             <point key="canvasLocation" x="-347.32824427480915" y="-60.563380281690144"/>
         </view>
     </objects>

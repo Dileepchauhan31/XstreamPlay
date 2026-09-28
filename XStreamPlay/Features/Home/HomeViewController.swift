@@ -12,7 +12,7 @@ final class HomeViewController: UIViewController, MovieCellDelegate, StoryboardI
    
     @IBOutlet weak var tableView: UITableView!
 
-    private let viewModel = HomeViewModel()
+    private let viewModel = HomeViewModel(types: [.trending, .popular, .topRated, .upcoming, .tvShows])
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {

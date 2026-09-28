@@ -17,14 +17,14 @@ final class HomeViewModel {
 
     // MARK: - Init
 
-    init() {
-        buckets = HomeViewModel.createBuckets()
+    init(types: [HomeBucketType]) {
+        self.buckets = HomeViewModel.createBuckets(types: types)
     }
 
     // MARK: - Private
 
-    private static func createBuckets() -> [HomeBucketViewModel] {
-        HomeBucketType.allCases.map { type in
+    private static func createBuckets(types: [HomeBucketType]) -> [HomeBucketViewModel] {
+        types.map { type in
             switch type {
             case .trending:
                 return HomeBucketViewModel(
@@ -66,6 +66,15 @@ final class HomeViewModel {
 //                    cellHeight: 230,
                     showPosterTitle: true
                 )
+                
+            case .moreLikeThis:
+                        return HomeBucketViewModel(
+                            type: type,
+                            title: "More Like This",
+                            showSeeAll: false,
+//                            cellHeight: 230,
+                            showPosterTitle: false
+                        )
             }
         }
     }

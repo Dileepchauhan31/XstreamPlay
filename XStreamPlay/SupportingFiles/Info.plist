@@ -2,17 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!--
+	    Configuration injected at build time from Secrets.xcconfig.
+	    These are placeholders, not values: Xcode substitutes $(VAR) during the
+	    build, so nothing secret is ever stored in this file or in git.
+	    Read them through AppEnvironment, never directly.
+	-->
+	<key>TMDB_ACCESS_TOKEN</key>
+	<string>$(TMDB_ACCESS_TOKEN)</string>
+	<key>TMDB_API_HOST</key>
+	<string>$(TMDB_API_HOST)</string>
+	<key>TMDB_IMAGE_HOST</key>
+	<string>$(TMDB_IMAGE_HOST)</string>
+
 	<key>UIAppFonts</key>
 	<array>
-        <string>Lato-Italic.ttf</string>
-        <string>Lato-LightItalic.ttf</string>
-        <string>Lato-Thin.ttf</string>
-        <string>Lato-Bold.ttf</string>
-        <string>Lato-Black.ttf</string>
-        <string>Lato-Regular.ttf</string>
-        <string>Lato-BlackItalic.ttf</string>
-        <string>Lato-BoldItalic.ttf</string>
-        <string>Lato-Light.ttf</string>
+		<string>Lato-Italic.ttf</string>
+		<string>Lato-LightItalic.ttf</string>
+		<string>Lato-Thin.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-BlackItalic.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
+		<string>Lato-Light.ttf</string>
 		<string>Lato-ThinItalic.ttf</string>
 	</array>
 	<key>CFBundleIdentifier</key>

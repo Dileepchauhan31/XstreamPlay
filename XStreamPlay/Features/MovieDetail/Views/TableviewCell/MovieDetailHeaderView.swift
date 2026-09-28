@@ -7,28 +7,11 @@
 
 import UIKit
 
-//final class MovieDetailHeaderView: UITableViewHeaderFooterView {
-//
-//    @IBOutlet weak var posterImageView: UIImageView!
-//    @IBOutlet weak var titleLabel: UILabel!
-//    @IBOutlet weak var subTitleLabel: UILabel!
-//
-//    static let reuseIdentifier = "MovieDetailHeaderView"
-//
-//    static func loadNib() -> UINib {
-//        return UINib(nibName: "MovieDetailHeaderView", bundle: nil)
-//    }
-//}
-
-
-
-import UIKit
-
 final class MovieDetailHeaderView: UITableViewHeaderFooterView {
 
 //    @IBOutlet weak var posterImageView: UIImageView!
-//    @IBOutlet weak var titleLabel: UILabel!
-//    @IBOutlet weak var underlineView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var underlineView: UIView!
 
     static let reuseIdentifier = "MovieDetailHeaderView"
 

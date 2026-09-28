@@ -105,7 +105,7 @@ final class HomeMovieCVC: UICollectionViewCell {
 
     // MARK: - Configuration
 
-    func configure(with movie: Movie, showBottomTitle: Bool) {
+    func configure(with movie: Model_Result, showBottomTitle: Bool) {
 
         centerTitleLabel.text = movie.title
         bottomTitleLabel.text = movie.title
@@ -115,7 +115,7 @@ final class HomeMovieCVC: UICollectionViewCell {
 
         showPlaceholderUI(show: true)
 
-        guard let posterPath = movie.posterPath else {
+        guard let posterPath = movie.poster_path else {
             return
         }
 

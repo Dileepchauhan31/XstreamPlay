@@ -1,0 +1,45 @@
+# ─── Secrets ──────────────────────────────────────────────────────────────
+# Never commit real credentials. Secrets.example.xcconfig documents the shape.
+Secrets.xcconfig
+
+# ─── macOS ────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+
+# ─── Xcode ────────────────────────────────────────────────────────────────
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ─── Swift Package Manager ────────────────────────────────────────────────
+.build/
+.swiftpm/
+Packages/
+
+# ─── CocoaPods / Carthage (not used, kept for safety) ─────────────────────
+Pods/
+Carthage/Build/
+
+# ─── Fastlane ─────────────────────────────────────────────────────────────
+fastlane/report.xml
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# ─── Misc ─────────────────────────────────────────────────────────────────
+*.log
+.env

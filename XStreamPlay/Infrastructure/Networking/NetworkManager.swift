@@ -8,130 +8,81 @@
 import Foundation
 import Combine
 
-// MARK: - HTTP Method
-public enum HTTPMethod: String {
-    case get     = "GET"
-    case post    = "POST"
-    case put     = "PUT"
-    case delete  = "DELETE"
-    case patch   = "PATCH"
-}
+/// Transitional Combine facade over the legacy absolute-URL call style.
+///
+/// - Important: This type is **scheduled for deletion**. New code must depend on
+///   `APIClient` and build requests from `Endpoint`, not pass URL strings around.
+///   It survives only so the existing view models keep compiling while they are
+///   migrated one at a time.
+///
+/// What changed here in Week 1:
+/// - The bearer token now comes from `AppEnvironment`, not a source literal.
+/// - `print()` of every raw response body is gone, replaced by OSLog at debug level.
+/// - Errors map onto the shared `APIError` set instead of a parallel enum.
+///
+/// - TODO: Remove once Home, SeeAll and MovieDetails use `APIClient`.
+final class NetworkManager {
 
-// MARK: - Network Error
-public enum NetworkError: Error {
-    case invalidURL
-    case noData
-    case decodingFailed
-    case serverError(Int)
-    case unknown(Error)
-}
+    static let shared = NetworkManager()
 
-public extension NetworkError {
-    
-    var userMessage: String {
-        switch self {
-        case .invalidURL:
-            return "Invalid URL"
-        case .noData:
-            return "No data received"
-        case .decodingFailed:
-            return "Failed to decode response"
-        case .serverError(let code):
-            return "Server error: \(code)"
-        case .unknown:
-            return "Something went wrong"
-        }
+    private let session: URLSession
+    private let accessToken: String
+
+    /// Legacy models (`Model_Result`, `Model_MovieDetails`, …) declare explicit
+    /// snake_case `CodingKeys`, so they must be decoded **without**
+    /// `.convertFromSnakeCase`. New DTOs use `JSONDecoder.tmdb` instead.
+    private let legacyDecoder = JSONDecoder()
+
+    init(session: URLSession = .shared, accessToken: String = AppEnvironment.tmdbAccessToken) {
+        self.session = session
+        self.accessToken = accessToken
     }
-}
 
-// MARK: - NetworkManager
-public final class NetworkManager {
-
-    public static let shared = NetworkManager()
-    private init() {}
-
-    public func request<T: Decodable>(
-        url: String,
+    func request<T: Decodable>(
+        url urlString: String,
         method: HTTPMethod,
         headers: [String: String]? = nil,
         body: Encodable? = nil
-    ) -> AnyPublisher<T, NetworkError> {
+    ) -> AnyPublisher<T, APIError> {
 
-        guard let url = URL(string: url) else {
-            print("Invalid URL:", url)
-            return Fail(error: .invalidURL)
-                .eraseToAnyPublisher()
-        }
-
-        //  REQUEST LOG
-        print("REQUEST URL:", url.absoluteString)
-        print("METHOD:", method.rawValue)
-        if let headers = headers {
-            print("HEADERS:", headers)
+        guard let url = URL(string: urlString) else {
+            return Fail(error: .invalidURL(urlString)).eraseToAnyPublisher()
         }
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "accept")
-        request.setValue("Bearer \(TMDBConfig.bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        headers?.forEach { request.setValue($1, forHTTPHeaderField: $0) }
 
-        headers?.forEach {
-            request.setValue($0.value, forHTTPHeaderField: $0.key)
-        }
-
-        if let body = body {
+        if let body {
             do {
                 request.httpBody = try JSONEncoder().encode(AnyEncodable(body))
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                print("BODY:", String(data: request.httpBody!, encoding: .utf8) ?? "")
             } catch {
-                print("BODY ENCODING ERROR:", error)
-                return Fail(error: .unknown(error))
+                return Fail(error: .unknown(description: "Request body could not be encoded"))
                     .eraseToAnyPublisher()
             }
         }
 
-        return URLSession.shared.dataTaskPublisher(for: request)
+        Log.network.debug("→ \(method.rawValue, privacy: .public) \(url.path, privacy: .public)")
+
+        return session.dataTaskPublisher(for: request)
             .tryMap { output -> Data in
-
-                guard let response = output.response as? HTTPURLResponse else {
-                    print("No HTTP Response")
-                    throw NetworkError.noData
+                guard let http = output.response as? HTTPURLResponse else {
+                    throw APIError.invalidResponse
                 }
 
-                // RESPONSE LOG
-                print("⬅️ STATUS CODE:", response.statusCode)
+                Log.network.debug("← \(http.statusCode, privacy: .public) \(url.path, privacy: .public)")
 
-                if let json = String(data: output.data, encoding: .utf8) {
-                    print("RAW RESPONSE:\n", json)
+                guard (200...299).contains(http.statusCode) else {
+                    throw APIError(status: http.statusCode, headers: http.allHeaderFields)
                 }
-
-                guard (200...299).contains(response.statusCode) else {
-                    print("SERVER ERROR:", response.statusCode)
-                    throw NetworkError.serverError(response.statusCode)
-                }
-
                 return output.data
             }
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { error in
-
-                //  ERROR LOG
-                if let decodingError = error as? DecodingError {
-                    print("DECODING ERROR:", decodingError)
-                    return .decodingFailed
-                }
-
-                if let networkError = error as? NetworkError {
-                    print("NETWORK ERROR:", networkError)
-                    return networkError
-                }
-
-                print("UNKNOWN ERROR:", error)
-                return .unknown(error)
-            }
+            .decode(type: T.self, decoder: legacyDecoder)
+            .mapError { APIError(from: $0) }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }
-
